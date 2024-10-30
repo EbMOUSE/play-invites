@@ -24,3 +24,4 @@ yarn-error.log
 app/Http/Controllers/FirstController.php
 resources/views/hi.blade.php
 README.md
+resources/views/shared/success_message.blade.php
