@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Invite;
 
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -10,8 +9,6 @@ class InviteController extends Controller
 {
     public function store(Request $request): RedirectResponse
     {
-
-        /*
         $invite = Invite::create(
             [
                 dump(request()->get('title')),
@@ -19,7 +16,6 @@ class InviteController extends Controller
                 dump(request()->get('game')),
             ]
         );
-        */
 
         $validated = $request->validate([
             'title' => 'required|string|max:35',
