@@ -2,7 +2,8 @@
 
 @section('content')
 
-hi wassup
+<!-- temp -->
+hi wassup (main)
 @include('shared.post_invite')
 
 @endsection
