@@ -1,6 +1,6 @@
-@extends('layout.layout')
+@extends('layouts.guest')
 
-@section('content')
+@section('slot')
 
 <!-- temp -->
 hi wassup (main)
