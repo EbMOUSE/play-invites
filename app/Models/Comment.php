@@ -11,6 +11,8 @@ class Comment extends Model
     use HasFactory;
 
     protected $fillable = [
+        'invite_id',
+        'user_id',
         'comment',
     ];
 
