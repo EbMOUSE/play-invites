@@ -18,28 +18,28 @@
     <div class="bg-white">
         @include('shared.post_invite')
 
-        <div class="border-style: solid;">
-                @foreach ( $invites as $invite )
+        <div>
+            @foreach ( $invites as $invite )
+                <div>
                     <div>
-                        <div>
-                            <h6>username</h6>
-                        </div>
-
-                        <div>
-                            <h1>{{ $invite->title }}</h1>
-                        </div>
-
-                        <div>
-                            <p>{{ $invite->description }}</p>
-                        </div>
-
-                        <div>
-                            <h6>{{ $invite->updated_at }}</h6>
-                        </div>
+                        <h6>username</h6>
                     </div>
-                @endforeach
 
-                {{ $invites->links() }}
+                    <div>
+                        <h1>{{ $invite->title }}</h1>
+                    </div>
+
+                    <div>
+                        <p>{{ $invite->description }}</p>
+                    </div>
+
+                    <div>
+                        <h6>{{ $invite->updated_at }}</h6>
+                    </div>
+                </div>
+            @endforeach
+
+            {{ $invites->links() }}
         </div>
     </div>
 </x-app-layout>

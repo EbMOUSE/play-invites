@@ -10,12 +10,7 @@
             placeholder="Ievadiet aprakstu. Cik cilvēkus vajag, cik ilgi spēlēsiet u.c."></textarea>
         </div>
 
-        <div>
-            <select name="game_id">
-                <option value="0">Option</option>
-                <option value="1">YAHHOO!!!!!!!!!</option>
-            </select>
-        </div>
+        @include('shared.get_games')
 
         <div>
             <button type="submit">
