@@ -1,12 +1,12 @@
-function joinOffer(offerId) {
+function joinOffer(invite_id) {
     $.ajax({
-        url: `/offers/${offerId}/join`,
+        url: `/invites/${invite_id}/join`,
         type: 'POST',
         success: function(response) {
-            $('#offers-list').html(response);
+            $('#invite_list').html(response);
         },
         error: function(error) {
-            console.error('Piedvajums netika pievienots', error);
+            console.error('Ielūgums netika pievienots', error);
         }
     });
 }

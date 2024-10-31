@@ -1,14 +1,23 @@
 <?php
 
+use App\Models\Invite;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\InviteController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+
+// Auth
 Route::get('/dashboard', function () {
-    return view('dashboard');
+        $invites = DB::table('invites')->get();
+        return view( 'dashboard', [
+            'invites' => Invite::orderBy('created_at', 'desc')->paginate(10),
+        ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -18,3 +27,11 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+// Custom
+//Route::get( '/invites', [DashboardController::class ,'show'] )->name('invite.show');
+
+Route::post( '/dashboard', [InviteController::class , 'store'] )->name('invite.create');
+
+//Route::post('/invites/{invite}/comments', [CommentController::class, 'store'])->name('invite.create');

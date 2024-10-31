@@ -2,29 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Models\Invite;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class InviteController extends Controller
 {
+    public function index()
+    {
+        // Query data using the Eloquent model
+        //$invites = Invite::orderBy('created_at', 'desc')->get();
+        $invites = DB::table('invites')->get();
+
+        return view( 'dashboard', [
+            $invites,
+        ]);
+    }
+
     public function store(Request $request): RedirectResponse
     {
-        $invite = Invite::create(
-            [
-                dump(request()->get('title')),
-                dump(request()->get('description')),
-                dump(request()->get('game')),
-            ]
-        );
-
-        $validated = $request->validate([
-            'title' => 'required|string|max:35',
-            'description' => 'required|string|max:150',
-            'game' => 'required|integer',
+        // Validation
+        request()->validate([
+            'title' => 'required|string|min:1|max:35',
+            'description' => 'required|string|min:1|max:150',
+            'game_id' => 'required|integer',
         ]);
 
-        $request->user()->invites()->create($validated);
+        // Assigning fields
+        $invite = new Invite;
 
-        return redirect()->route('main');
+        $invite->user_id = Auth::user()->id;
+        $invite->title = $request->get('title');
+        $invite->description = $request->get('description');
+        $invite->game_id = $request->get('game_id');
+
+        $invite->save();
+        return redirect()->route('dashboard');
     }
 }
