@@ -12,6 +12,7 @@ class Invite extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'title',
         'description',
         'game_id',

@@ -2,29 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Invite;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class InviteController extends Controller
 {
     public function store(Request $request): RedirectResponse
     {
-        $invite = Invite::create(
-            [
-                dump(request()->get('title')),
-                dump(request()->get('description')),
-                dump(request()->get('game')),
-            ]
-        );
+        // for testing
+        dump(request()->get('user_id'));
+        dump(request()->get('title'));
+        dump(request()->get('description'));
+        dump(request()->get('game'));
 
-        $validated = $request->validate([
-            'title' => 'required|string|max:35',
-            'description' => 'required|string|max:150',
-            'game' => 'required|integer',
+        // Validation
+        request()->validate([
+            'title' => 'required|string|min:1|max:35',
+            'description' => 'required|string|min:1|max:150',
+            'game_id' => 'required|integer',
         ]);
 
-        $request->user()->invites()->create($validated);
+        // Assigning fields
+        $invite = new Invite;
+        $invite->user_id = '0';
+        $invite->title = $request->get('title');
+        $invite->description = $request->get('description');
+        $invite->game_id = $request->get('game_id');
+        //$invite->user_id = Auth::user()->id;
 
-        return redirect()->route('main');
+        $invite->save();
+
+        return redirect()->route('dashboard');
     }
 }

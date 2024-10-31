@@ -1,19 +1,19 @@
 <div>
-    <form action="{{ route('invite.post') }}" method="POST">
+    <form action="{{ route('invite.create') }}" method="POST">
         @csrf
         <div>
-            <input type="text" name="title" placeholder="Virsraksts">
+            <input type="text" name="title" placeholder="Virsraksts" maxlength="35">
         </div>
 
         <div>
-            <textarea name="body" rows="7" cols="45"
+            <textarea name="description" rows="7" cols="45" maxlength="200"
             placeholder="Ievadiet aprakstu. Cik cilvēkus vajag, cik ilgi spēlēsiet u.c."></textarea>
         </div>
 
         <div>
-            <select name="game">
-                <option value="1">Option</option>
-                <option value="2">YAHHOO!!!!!!!!!</option>
+            <select name="game_id">
+                <option value="0">Option</option>
+                <option value="1">YAHHOO!!!!!!!!!</option>
             </select>
         </div>
 
