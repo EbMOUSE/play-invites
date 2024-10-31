@@ -34,6 +34,6 @@ class InviteController extends Controller
 
         $invite->save();
 
-        return redirect()->route('dashboard');
+        return redirect()->route('burpdashboard');
     }
 }
