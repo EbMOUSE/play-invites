@@ -3,6 +3,7 @@
 use App\Models\Invite;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\InviteController;
+use App\Http\Controllers\GameController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -30,8 +31,8 @@ require __DIR__.'/auth.php';
 
 
 // Custom
-//Route::get( '/invites', [DashboardController::class ,'show'] )->name('invite.show');
-
 Route::post( '/dashboard', [InviteController::class , 'store'] )->name('invite.create');
+
+Route::get( '/games', [GameController::class , 'index'] )->name('game.index');
 
 //Route::post('/invites/{invite}/comments', [CommentController::class, 'store'])->name('invite.create');

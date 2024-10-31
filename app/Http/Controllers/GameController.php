@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use App\Models\Invite;
+use App\Models\Game;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class GameController extends Controller
 {
-    public function show(Invite $invite)
+    public function show()
     {
-        //
+        $games = Game::all();
+
+        return view( 'games', [
+            'games' => $games,
+        ]);
     }
 }
