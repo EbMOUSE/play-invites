@@ -1,4 +1,4 @@
-<div>
+<div style="border-style: solid;">
     <form action="{{ route('invite.comment.create') }}" method="POST">
         @csrf
         <div>

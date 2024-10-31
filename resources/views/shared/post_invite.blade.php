@@ -1,8 +1,10 @@
-<div>
+<div style="border-style: solid;">
     <form action="{{ route('invite.create') }}" method="POST">
         @csrf
         <div>
             <input type="text" name="title" placeholder="Virsraksts" maxlength="35">
+            <button action="" name="edit">Rediģēt</button>
+            <button action="" name="delete">Dzēst</button>
         </div>
 
         <div>

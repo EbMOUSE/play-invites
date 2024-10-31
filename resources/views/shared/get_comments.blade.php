@@ -1,4 +1,4 @@
-<div>
+<div style="border-style: solid;">
     <div>
         <div>
             <h6>{{ $this->Auth::user()->name }}</h6>

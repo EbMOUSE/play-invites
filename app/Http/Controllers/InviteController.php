@@ -10,6 +10,11 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class InviteController extends Controller
 {
+    public function show(Invite $invite)
+    {
+        //
+    }
+
     public function store(Request $request): RedirectResponse
     {
         // Validation
