@@ -3,8 +3,6 @@
         @csrf
         <div>
             <input type="text" name="title" placeholder="Virsraksts" maxlength="35">
-            <button action="" name="edit">Rediģēt</button>
-            <button action="" name="delete">Dzēst</button>
         </div>
 
         <div>

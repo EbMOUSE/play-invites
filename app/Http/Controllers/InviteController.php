@@ -4,15 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Invite;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class InviteController extends Controller
 {
-    public function show(Invite $invite)
+    public function index()
     {
-        //
+        // Query data using the Eloquent model
+        //$invites = Invite::orderBy('created_at', 'desc')->get();
+        $invites = DB::table('invites')->get();
+
+        return view( 'dashboard', [
+            $invites,
+        ]);
     }
 
     public function store(Request $request): RedirectResponse
@@ -33,7 +40,6 @@ class InviteController extends Controller
         $invite->game_id = $request->get('game_id');
 
         $invite->save();
-
-        return redirect()->route('burpdashboard');
+        return redirect()->route('dashboard');
     }
 }
