@@ -4,25 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Invite;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class InviteController extends Controller
 {
-    public function index()
-    {
-        //
-    }
-
+    // Creating
     public function store(Request $request): RedirectResponse
     {
         // Validation
         request()->validate([
             'title' => 'required|string|min:1|max:35',
             'description' => 'required|string|min:1|max:150',
-            'game_id' => 'required|integer',
         ]);
 
         // Assigning fields
@@ -35,5 +30,17 @@ class InviteController extends Controller
 
         $invite->save();
         return redirect()->route('dashboard');
+    }
+
+    public function show(Invite $invite)
+    {
+        $user = User::where('id', $invite->user_id)->first();
+        $comments = $invite->comments;
+
+        return view( 'invite.show', [
+            'invite' => $invite,
+            'user' => $user,
+            'comments' => $comments,
+        ]);
     }
 }
