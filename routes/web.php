@@ -30,4 +30,10 @@ Route::post( '/invites', [InviteController::class , 'store'] )->name('invite.cre
 
 Route::get( '/invites/{invite}', [InviteController::class, 'show'] )->name('invite.show');
 
+Route::get( '/invites/{invite}/edit', [InviteController::class, 'edit'] )->name('invite.edit');
+
+Route::put( '/invites/{invite}', [InviteController::class, 'update'] )->name('invite.update');
+
+Route::delete( '/invites/{invite}', [InviteController::class, 'destroy'] )->name('invite.destroy');
+
 Route::post('/invites/{invite}/comments', [CommentController::class, 'store'])->name('comment.create');

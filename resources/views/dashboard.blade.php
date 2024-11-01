@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("Sveicināti!") }}
+                    {{ __("Sveicināti! Uzklikšķiniet uz jebkuru ielūgumu, lai pievienotu komentāru!") }}
                 </div>
             </div>
         </div>
@@ -23,10 +23,6 @@
                         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="p-6 text-gray-900 dark:text-gray-100">
                                 <h6>username</h6>
-                                @if ( $invite->user_id == Auth::user()->id )
-                                    <button action="" name="edit">Rediģēt</button>
-                                    <button action="" name="delete">Dzēst</button>
-                                @endif
                             </div>
 
                             <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -43,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-            <a>
+            </a>
         @endforeach
 
         {{ $invites->links() }}

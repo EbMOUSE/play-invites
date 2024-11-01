@@ -11,13 +11,13 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class InviteController extends Controller
 {
+    // Creating
     public function store(Request $request): RedirectResponse
     {
         // Validation
         request()->validate([
             'title' => 'required|string|min:1|max:35',
             'description' => 'required|string|min:1|max:150',
-            'game_id' => 'required|integer',
         ]);
 
         // Assigning fields
@@ -42,5 +42,43 @@ class InviteController extends Controller
             'user' => $user,
             'comments' => $comments,
         ]);
+    }
+
+    // Editing
+    public function edit(Invite $invite)
+    {
+        $editing = true;
+        return view( 'invite.show', [
+            'invite' => $invite,
+            'user' => User::where('id', $invite->user_id)->first(),
+            'comments' => $invite->comments,
+            'editing' => $editing,
+        ]);
+    }
+
+    public function update(Invite $invite)
+    {
+        request()->validate([
+            'newTitle' => 'required|string|min:1|max:35',
+            'newDescription' => 'required|string|min:1|max:150',
+        ]);
+
+        $invite->title = request()->get('newTitle', '');
+        $invite->description = request()->get('newDescription', '');
+
+        $invite->save();
+
+        return redirect()->route('invite.show', $invite->id);
+    }
+
+    public function destroy(Invite $invite)
+    {
+        $comments = $invite->comments;
+        foreach ($comments as $comment) {
+            $comment->delete();
+        }
+
+        $invite->delete();
+        return ('dashboard');
     }
 }

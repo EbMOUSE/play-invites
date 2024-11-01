@@ -6,29 +6,7 @@
     </x-slot>
 
     <!-- Invite -->
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
-            <div class="p-6 text-gray-900 dark:text-gray-100">
-                <h6>{{ $user->name }}</h6>
-                @if ( $invite->user_id == Auth::user()->id )
-                    <button action="" name="edit">Rediģēt</button>
-                    <button action="" name="delete">Dzēst</button>
-                @endif
-            </div>
-
-            <div class="p-6 text-gray-900 dark:text-gray-100">
-                <h1>{{ $invite->title }}</h1>
-            </div>
-
-            <div class="p-6 text-gray-900 dark:text-gray-100">
-                <p>{{ $invite->description }}</p>
-            </div>
-
-            <div class="p-6 text-gray-900 dark:text-gray-100">
-                <h6>{{ $invite->updated_at }}</h6>
-            </div>
-        </div>
-    </div>
+    @include('invite.post_edit')
 
     <div>
         @include('invite.post_comment')
