@@ -3,7 +3,6 @@
 use App\Models\Invite;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\InviteController;
-use App\Http\Controllers\GameController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -31,5 +30,4 @@ Route::post( '/invites', [InviteController::class , 'store'] )->name('invite.cre
 
 Route::get( '/invites/{invite}', [InviteController::class, 'show'] )->name('invite.show');
 
-Route::get( '/games', [GameController::class , 'index'] )->name('game.index');
-//Route::post('/invites/{invite}/comments', [CommentController::class, 'store'])->name('invite.create');
+Route::post('/invites/{invite}/comments', [CommentController::class, 'store'])->name('comment.create');

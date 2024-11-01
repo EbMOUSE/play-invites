@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Models\Comment;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Invite;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -37,10 +35,7 @@ class InviteController extends Controller
     public function show(Invite $invite)
     {
         $user = User::where('id', $invite->user_id)->first();
-        //$user = User::with($id)->get();
-        //$comments = Comment::with($id)->get();
         $comments = $invite->comments;
-        //$comments = Comment::where('post_id', $id)->get();
 
         return view( 'invite.show', [
             'invite' => $invite,

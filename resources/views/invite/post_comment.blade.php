@@ -1,17 +1,10 @@
 <div style="border-style: solid;">
-    <form action="{{ route('invite.comment.create') }}" method="POST">
+    <form action="{{ route('comment.create', $invite->id) }}" method="POST">
         @csrf
         <div>
             <label for="comment">Pievienot komentāru</label>
             <textarea id="comment" name="comment" rows="6" cols="20" maxlength="150"
             placeholder="Teksts"></textarea>
-        </div>
-
-        <div>
-            <select name="game_id">
-                <option value="0">Option</option>
-                <option value="1">YAHHOO!!!!!!!!!</option>
-            </select>
         </div>
 
         <div>
