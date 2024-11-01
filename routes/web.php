@@ -14,12 +14,8 @@ Route::get('/', function () {
 
 
 // Auth
-Route::get('/dashboard', function () {
-        $invites = DB::table('invites')->get();
-        return view( 'dashboard', [
-            'invites' => Invite::orderBy('created_at', 'desc')->paginate(10),
-        ]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class , 'index'])
+->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -31,8 +27,9 @@ require __DIR__.'/auth.php';
 
 
 // Custom
-Route::post( '/dashboard', [InviteController::class , 'store'] )->name('invite.create');
+Route::post( '/invites', [InviteController::class , 'store'] )->name('invite.create');
+
+Route::get( '/invites/{invite}', [InviteController::class, 'show'] )->name('invite.show');
 
 Route::get( '/games', [GameController::class , 'index'] )->name('game.index');
-
 //Route::post('/invites/{invite}/comments', [CommentController::class, 'store'])->name('invite.create');

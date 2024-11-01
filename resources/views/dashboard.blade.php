@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("Jūs esat pieteicies sistēmā!") }}
+                    {{ __("Sveicināti!") }}
                 </div>
             </div>
         </div>
@@ -20,23 +20,29 @@
 
         <div>
             @foreach ( $invites as $invite )
-                <div>
+                <a href="{{ route('invite.show', $invite->id) }}">
                     <div>
-                        <h6>username</h6>
-                    </div>
+                        <div>
+                            <h6>username</h6>
+                            @if ( $invite->user_id == Auth::user()->id )
+                                <button action="" name="edit">Rediģēt</button>
+                                <button action="" name="delete">Dzēst</button>
+                            @endif
+                        </div>
 
-                    <div>
-                        <h1>{{ $invite->title }}</h1>
-                    </div>
+                        <div>
+                            <h1>{{ $invite->title }}</h1>
+                        </div>
 
-                    <div>
-                        <p>{{ $invite->description }}</p>
-                    </div>
+                        <div>
+                            <p>{{ $invite->description }}</p>
+                        </div>
 
-                    <div>
-                        <h6>{{ $invite->updated_at }}</h6>
+                        <div>
+                            <h6>{{ $invite->updated_at }}</h6>
+                        </div>
                     </div>
-                </div>
+                <a>
             @endforeach
 
             {{ $invites->links() }}
